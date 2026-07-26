@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Precision Regen — Orthobiologic Excellence</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --deep: #0d1f3c;
+    --gold: #c8a96e;
+    --gold-light: #e8d5a3;
+    --cream: #f7f4ef;
+    --white: #ffffff;
+    --slate: #6b7a8d;
+    --light-slate: #a8b4c0;
+    --border: rgba(200, 169, 110, 0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: rgba(10,22,40,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.3s ease;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 600;
+    letter-spacing: 0.05em; color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 400;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--light-slate); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    padding: 0.6rem 1.6rem;
+    border: 1px solid var(--gold);
+    color: var(--gold); font-size: 0.75rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; font-weight: 500;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--navy); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 10rem 4rem 6rem 4rem;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 2.5rem; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    font-weight: 300; line-height: 1.05;
+    margin-bottom: 2rem;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--gold);
+  }
+  .hero-desc {
+    font-size: 1rem; line-height: 1.7;
+    color: var(--light-slate); max-width: 480px;
+    margin-bottom: 3rem;
+  }
+  .hero-actions { display: flex; gap: 1.2rem; align-items: center; }
+  .btn-primary {
+    padding: 1rem 2.5rem;
+    background: var(--gold); color: var(--navy);
+    font-size: 0.8rem; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 500;
+    text-decoration: none; transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-ghost {
+    padding: 1rem 2rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--light-slate); font-size: 0.8rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--navy) 0%, transparent 60%);
+    z-index: 1;
+  }
+  .hero-bg-img {
+    width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.4;
+  }
+  .hero-bg-visual {
+    width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse at 70% 40%, rgba(200,169,110,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 30% 80%, rgba(13,31,60,0.8) 0%, transparent 50%),
+      linear-gradient(135deg, #0a1628 0%, #1a2d4a 40%, #0d2240 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  /* Animated cell/molecule visual */
+  .molecule-svg {
+    position: absolute; right: -2rem; top: 50%;
+    transform: translateY(-50%);
+    width: 55%; opacity: 0.15; z-index: 0;
+    animation: rotateSlow 30s linear infinite;
+  }
+  @keyframes rotateSlow { to { transform: translateY(-50%) rotate(360deg); } }
+
+  .hero-stats {
+    position: absolute; bottom: 4rem; right: 4rem;
+    z-index: 3; display: flex; gap: 2.5rem;
+  }
+  .stat {
+    text-align: right;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 300; color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.65rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--slate);
+    margin-top: 0.3rem;
+  }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.4; margin: 0;
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 0.65rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300; line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-body {
+    font-size: 1rem; line-height: 1.75;
+    color: var(--light-slate); max-width: 600px;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--deep);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+    height: 500px;
+  }
+  .about-card {
+    background: linear-gradient(135deg, rgba(200,169,110,0.08), rgba(200,169,110,0.02));
+    border: 1px solid var(--border);
+    padding: 3rem;
+    height: 100%;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-card::before {
+    content: '';
+    position: absolute; top: -50%; right: -50%;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(200,169,110,0.06) 0%, transparent 70%);
+  }
+  .dr-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+  .dr-title {
+    font-size: 0.75rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 2rem;
+  }
+  .dr-bio {
+    font-size: 0.95rem; line-height: 1.75;
+    color: var(--light-slate);
+  }
+  .credential-list {
+    margin-top: 2rem; list-style: none;
+    display: flex; flex-direction: column; gap: 0.7rem;
+  }
+  .credential-list li {
+    font-size: 0.8rem; color: var(--slate);
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .credential-list li::before {
+    content: '—'; color: var(--gold);
+  }
+
+  /* ── TREATMENTS ── */
+  .treatments { background: var(--navy); }
+  .treatments-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; margin-bottom: 5rem;
+    align-items: end;
+  }
+  .treatments-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+  }
+  .treatment-card {
+    background: var(--deep);
+    padding: 2.5rem;
+    transition: all 0.4s;
+    position: relative; overflow: hidden;
+    cursor: default;
+  }
+  .treatment-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px; background: var(--gold);
+    transition: width 0.4s;
+  }
+  .treatment-card:hover::after { width: 100%; }
+  .treatment-card:hover { background: rgba(13,31,60,0.9); }
+  .treatment-icon {
+    font-size: 1.8rem; margin-bottom: 1.5rem;
+    display: block;
+  }
+  .treatment-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+  .treatment-abbr {
+    font-size: 0.65rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.2rem; display: block;
+  }
+  .treatment-desc {
+    font-size: 0.85rem; line-height: 1.7;
+    color: var(--slate);
+  }
+  .treatment-uses {
+    margin-top: 1.5rem; list-style: none;
+    display: flex; flex-direction: column; gap: 0.4rem;
+  }
+  .treatment-uses li {
+    font-size: 0.75rem; color: var(--light-slate);
+    padding-left: 1rem; position: relative;
+  }
+  .treatment-uses li::before {
+    content: '·'; position: absolute; left: 0;
+    color: var(--gold); font-size: 1rem; line-height: 1;
+  }
+
+  /* ── CONDITIONS ── */
+  .conditions {
+    background: var(--deep);
+    display: grid; grid-template-columns: 1fr 1.5fr;
+    gap: 6rem; align-items: center;
+  }
+  .conditions-list {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .condition-item {
+    padding: 1.2rem 1.5rem;
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--light-slate);
+    transition: all 0.3s;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .condition-item:hover {
+    border-color: var(--gold);
+    color: var(--white);
+    background: rgba(200,169,110,0.04);
+  }
+  .condition-item::before {
+    content: ''; flex-shrink: 0;
+    width: 5px; height: 5px;
+    border-radius: 50%; background: var(--gold);
+  }
+
+  /* ── PROCESS ── */
+  .process { background: var(--navy); }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin-top: 4rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 2rem; left: 12%; right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent, var(--gold));
+    opacity: 0.3; z-index: 0;
+  }
+  .process-step {
+    padding: 2rem; text-align: center;
+    position: relative; z-index: 1;
+  }
+  .step-num {
+    width: 4rem; height: 4rem;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; color: var(--gold);
+    margin: 0 auto 1.5rem;
+    background: var(--navy);
+  }
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; margin-bottom: 0.8rem;
+  }
+  .step-desc {
+    font-size: 0.8rem; line-height: 1.6;
+    color: var(--slate);
+  }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer {
+    background: rgba(200,169,110,0.04);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 4rem;
+    display: flex; gap: 2rem; align-items: flex-start;
+  }
+  .disclaimer-icon {
+    font-size: 1.5rem; flex-shrink: 0; margin-top: 0.2rem;
+  }
+  .disclaimer-title {
+    font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .disclaimer-text {
+    font-size: 0.85rem; line-height: 1.7;
+    color: var(--slate);
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--deep);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center;
+  }
+  .contact-form {
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-group label {
+    font-size: 0.65rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--slate);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white); padding: 0.9rem 1rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border-color 0.3s;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-group select option { background: var(--deep); }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-submit {
+    padding: 1rem 2.5rem;
+    background: var(--gold); color: var(--navy);
+    font-size: 0.8rem; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 500;
+    border: none; cursor: pointer; align-self: flex-start;
+    transition: all 0.3s; font-family: 'DM Sans', sans-serif;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+  .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+  .contact-item { display: flex; flex-direction: column; gap: 0.4rem; }
+  .contact-item-label {
+    font-size: 0.65rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .contact-item-val {
+    font-size: 1rem; color: var(--light-slate);
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    padding: 3rem 4rem;
+    display: flex; align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600;
+    color: var(--white);
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-copy {
+    font-size: 0.75rem; color: var(--slate);
+  }
+  .footer-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .footer-links a {
+    font-size: 0.72rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--slate);
+    text-decoration: none; transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * {
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.55s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 2rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 9rem 2rem 4rem; }
+    .hero-stats { right: 2rem; bottom: 2rem; }
+    .about, .conditions, .contact { grid-template-columns: 1fr; gap: 3rem; }
+    .treatments-header { grid-template-columns: 1fr; }
+    .treatments-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .disclaimer { padding: 2.5rem 2rem; }
+  }
+  @media (max-width: 640px) {
+    .treatments-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .conditions-list { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Precision<span>Regen</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#treatments">Treatments</a></li>
+    <li><a href="#conditions">Conditions</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book Consultation</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Advanced Orthobiologic Medicine</div>
+    <h1>Regenerate.<br><em>Restore.</em><br>Reclaim.</h1>
+    <p class="hero-desc">
+      Precision Regen offers cutting-edge orthobiologic therapies that harness your body's own healing potential — restoring joints, tendons, and cartilage with science-driven precision.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Schedule Consultation</a>
+      <a href="#treatments" class="btn-ghost">Explore Treatments</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-visual">
+      <!-- Decorative SVG molecule -->
+      <svg class="molecule-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="160" stroke="#c8a96e" stroke-width="0.5" stroke-dasharray="4 8"/>
+        <circle cx="200" cy="200" r="100" stroke="#c8a96e" stroke-width="0.5" stroke-dasharray="2 6"/>
+        <circle cx="200" cy="200" r="50" stroke="#c8a96e" stroke-width="1"/>
+        <circle cx="200" cy="40" r="12" fill="#c8a96e" opacity="0.5"/>
+        <circle cx="344" cy="120" r="8" fill="#c8a96e" opacity="0.4"/>
+        <circle cx="344" cy="280" r="10" fill="#c8a96e" opacity="0.3"/>
+        <circle cx="200" cy="360" r="7" fill="#c8a96e" opacity="0.4"/>
+        <circle cx="56" cy="280" r="12" fill="#c8a96e" opacity="0.5"/>
+        <circle cx="56" cy="120" r="8" fill="#c8a96e" opacity="0.3"/>
+        <line x1="200" y1="40" x2="344" y2="120" stroke="#c8a96e" stroke-width="0.5" opacity="0.3"/>
+        <line x1="344" y1="120" x2="344" y2="280" stroke="#c8a96e" stroke-width="0.5" opacity="0.3"/>
+        <line x1="344" y1="280" x2="200" y2="360" stroke="#c8a96e" stroke-width="0.5" opacity="0.3"/>
+        <line x1="200" y1="360" x2="56" y2="280" stroke="#c8a96e" stroke-width="0.5" opacity="0.3"/>
+        <line x1="56" y1="280" x2="56" y2="120" stroke="#c8a96e" stroke-width="0.5" opacity="0.3"/>
+        <line x1="56" y1="120" x2="200" y2="40" stroke="#c8a96e" stroke-width="0.5" opacity="0.3"/>
+        <circle cx="200" cy="200" r="15" fill="#c8a96e" opacity="0.2"/>
+        <circle cx="200" cy="200" r="6" fill="#c8a96e" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">PRP</div>
+        <div class="stat-label">Proven Therapy</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Orthobiologics</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1:1</div>
+        <div class="stat-label">Personalized Care</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div>
+    <div class="section-label">Meet Your Physician</div>
+    <h2 class="section-title">A New Standard in <em>Regenerative</em> Orthopedics</h2>
+    <p class="section-body">
+      Precision Regen was founded on the belief that the body has extraordinary capacity to heal when given the right tools. By combining advanced orthobiologic techniques with a deeply personalized approach, we help patients move past pain — without defaulting to surgery.
+    </p>
+    <ul class="credential-list" style="margin-top:2rem;">
+      <li>Board-Certified Orthopedic Specialist</li>
+      <li>Fellowship-Trained in Sports Medicine</li>
+      <li>Advanced Training in Regenerative Injections</li>
+      <li>Ultrasound-Guided Procedure Expertise</li>
+    </ul>
+  </div>
+  <div class="about-visual">
+    <div class="about-card">
+      <div class="dr-name">Dr. Balaji Sridhar</div>
+      <div class="dr-title">MD — Founder & Medical Director</div>
+      <p class="dr-bio">
+        Dr. Sridhar brings a rigorous, evidence-based philosophy to regenerative orthopedic medicine. Specializing in orthobiologics, he focuses on treating the root cause of musculoskeletal conditions — not masking symptoms. Every treatment plan is tailored to the individual, combining precise diagnostics with the latest biologic therapies.
+      </p>
+      <ul class="credential-list">
+        <li>Orthopedic Surgery & Sports Medicine</li>
+        <li>Platelet-Rich Plasma (PRP) & BMAC Injections</li>
+        <li>Cartilage Restoration & Joint Preservation</li>
+        <li>Dedicated to Patient-Centered, Minimally Invasive Care</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- TREATMENTS -->
+<section class="treatments" id="treatments">
+  <div class="treatments-header">
+    <div>
+      <div class="section-label">Our Therapies</div>
+      <h2 class="section-title">Orthobiologic <em>Treatment</em> Options</h2>
+    </div>
+    <p class="section-body" style="margin-bottom:0;">
+      Orthobiologics use substances derived from your own body to stimulate healing in joints, tendons, ligaments, and cartilage. Each therapy is selected based on your specific condition, imaging, and clinical presentation.
+    </p>
+  </div>
+  <div class="treatments-grid">
+
+    <div class="treatment-card">
+      <span class="treatment-icon">🔬</span>
+      <div class="treatment-name">Platelet-Rich Plasma</div>
+      <span class="treatment-abbr">PRP</span>
+      <p class="treatment-desc">Blood is drawn, platelets are concentrated, and injected into the injured area. The strongest evidence base among orthobiologics.</p>
+      <ul class="treatment-uses">
+        <li>Knee Osteoarthritis</li>
+        <li>Tennis Elbow</li>
+        <li>Achilles Tendinopathy</li>
+        <li>Rotator Cuff Injuries</li>
+      </ul>
+    </div>
+
+    <div class="treatment-card">
+      <span class="treatment-icon">🧬</span>
+      <div class="treatment-name">Bone Marrow Aspirate Concentrate</div>
+      <span class="treatment-abbr">BMAC</span>
+      <p class="treatment-desc">Bone marrow cells harvested from the pelvis, concentrated, and injected to support regeneration of damaged tissue.</p>
+      <ul class="treatment-uses">
+        <li>Cartilage Injuries</li>
+        <li>Arthritis</li>
+        <li>Tendon & Ligament Injuries</li>
+      </ul>
+    </div>
+
+    <div class="treatment-card">
+      <span class="treatment-icon">💧</span>
+      <div class="treatment-name">Microfragmented Adipose Tissue</div>
+      <span class="treatment-abbr">MFAT</span>
+      <p class="treatment-desc">Processed fat tissue rich in regenerative cells and growth factors, used to support healing in joints and soft tissue.</p>
+      <ul class="treatment-uses">
+        <li>Knee Arthritis</li>
+        <li>Soft Tissue Injuries</li>
+      </ul>
+    </div>
+
+    <div class="treatment-card">
+      <span class="treatment-icon">⚡</span>
+      <div class="treatment-name">Hyaluronic Acid Injections</div>
+      <span class="treatment-abbr">Viscosupplementation</span>
+      <p class="treatment-desc">A naturally occurring substance in joints that improves lubrication and cushioning, reducing pain and stiffness.</p>
+      <ul class="treatment-uses">
+        <li>Knee Osteoarthritis</li>
+        <li>Joint Stiffness & Pain</li>
+      </ul>
+    </div>
+
+    <div class="treatment-card">
+      <span class="treatment-icon">🔩</span>
+      <div class="treatment-name">Stem Cell–Based Therapies</div>
+      <span class="treatment-abbr">Investigational</span>
+      <p class="treatment-desc">Emerging therapies under rigorous evaluation. Dr. Sridhar provides transparent guidance on where evidence stands and what is FDA-compliant.</p>
+      <ul class="treatment-uses">
+        <li>Discussed case-by-case</li>
+        <li>With full informed consent</li>
+      </ul>
+    </div>
+
+    <div class="treatment-card" style="display:flex;align-items:center;justify-content:center;text-align:center;background:rgba(200,169,110,0.04);border:1px solid var(--border);">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:0.8rem;color:var(--gold);">Not Sure Which Is Right?</div>
+        <p style="font-size:0.85rem;color:var(--slate);line-height:1.6;margin-bottom:1.5rem;">Every patient is different. We'll evaluate your imaging, history, and goals to recommend the most appropriate therapy.</p>
+        <a href="#contact" class="btn-primary" style="font-size:0.72rem;">Book Evaluation</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- CONDITIONS -->
+<section class="conditions" id="conditions">
+  <div>
+    <div class="section-label">Conditions Treated</div>
+    <h2 class="section-title">We Specialize in <em>Musculoskeletal</em> Healing</h2>
+    <p class="section-body">
+      From early-stage tendinitis to advanced osteoarthritis, Precision Regen offers targeted orthobiologic options for a wide spectrum of orthopedic conditions — helping patients avoid or delay surgery.
+    </p>
+    <a href="#contact" class="btn-primary" style="margin-top:2.5rem;display:inline-block;">Discuss Your Condition</a>
+  </div>
+  <div class="conditions-list">
+    <div class="condition-item">Osteoarthritis</div>
+    <div class="condition-item">Meniscus Injuries</div>
+    <div class="condition-item">Tendinitis & Tendinopathy</div>
+    <div class="condition-item">Ligament Sprains</div>
+    <div class="condition-item">Cartilage Defects</div>
+    <div class="condition-item">Rotator Cuff Tears</div>
+    <div class="condition-item">Tennis / Golfer's Elbow</div>
+    <div class="condition-item">Achilles Tendinopathy</div>
+    <div class="condition-item">Plantar Fasciitis</div>
+    <div class="condition-item">Sports Injuries</div>
+    <div class="condition-item">Hip Impingement</div>
+    <div class="condition-item">Patellar Tendinopathy</div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div style="text-align:center;max-width:600px;margin:0 auto 1rem;">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Your Path to <em>Recovery</em></h2>
+    <p class="section-body" style="margin:0 auto;">A clear, guided process from first consultation to long-term follow-up — with Dr. Sridhar personally involved at every step.</p>
+  </div>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Consultation & Imaging</div>
+      <p class="step-desc">A thorough evaluation of your history, symptoms, and imaging (X-ray or MRI) to understand the full picture.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Personalized Treatment Plan</div>
+      <p class="step-desc">Dr. Sridhar designs a therapy protocol matched to your condition, severity, and recovery goals.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-title">Precision Injection</div>
+      <p class="step-desc">Orthobiologic therapies are administered using ultrasound guidance for maximum accuracy and safety.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-title">Monitoring & Follow-Up</div>
+      <p class="step-desc">Ongoing care, rehabilitation guidance, and progress evaluation to optimize outcomes over time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <div class="disclaimer-icon">ℹ️</div>
+  <div>
+    <div class="disclaimer-title">Important Clinical Information</div>
+    <p class="disclaimer-text">
+      Results from orthobiologic therapies vary widely depending on condition type, severity, and individual patient factors. PRP currently holds the strongest evidence base among orthobiologics for certain tendon problems and mild-to-moderate knee osteoarthritis. Many regenerative therapies remain under active investigation and are not considered cures. These treatments are typically not covered by insurance. Dr. Sridhar is committed to transparent, evidence-based discussions so patients can make fully informed decisions about their care.
+    </p>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div>
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Begin Your <em>Consultation</em></h2>
+    <p class="section-body">
+      Ready to explore whether orthobiologics are right for you? Reach out to schedule a one-on-one evaluation with Dr. Sridhar.
+    </p>
+    <div class="contact-info" style="margin-top:3rem;">
+      <div class="contact-item">
+        <div class="contact-item-label">Phone</div>
+        <div class="contact-item-val">(XXX) XXX-XXXX</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Email</div>
+        <div class="contact-item-val">info@precisionregen.com</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Location</div>
+        <div class="contact-item-val">Address Line 1<br>City, State ZIP</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Office Hours</div>
+        <div class="contact-item-val">Monday – Friday, 8:00 AM – 5:00 PM</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Jane">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="jane@email.com">
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" placeholder="(555) 000-0000">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Area of Concern</label>
+        <select>
+          <option value="" disabled selected>Select a condition or area</option>
+          <option>Knee Osteoarthritis</option>
+          <option>Shoulder / Rotator Cuff</option>
+          <option>Elbow (Tennis/Golfer's)</option>
+          <option>Hip</option>
+          <option>Achilles / Foot</option>
+          <option>Cartilage Injury</option>
+          <option>Other / Not Sure</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell us about your condition</label>
+        <textarea placeholder="Brief description of your symptoms, duration, and any prior treatments..."></textarea>
+      </div>
+      <button class="form-submit">Request Consultation</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Precision<span>Regen</span></div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#treatments">Treatments</a></li>
+    <li><a href="#conditions">Conditions</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#">Privacy Policy</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Precision Regen · Dr. Balaji Sridhar, MD</div>
+</footer>
+
+<script>
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Nav shrink on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.padding = window.scrollY > 60 ? '1rem 4rem' : '1.5rem 4rem';
+  });
+</script>
+</body>
+</html>
